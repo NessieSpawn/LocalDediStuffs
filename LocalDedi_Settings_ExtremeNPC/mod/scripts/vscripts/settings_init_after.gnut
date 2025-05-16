@@ -8,6 +8,8 @@ void function LocalDediSettings_AfterServerScript()
 
     // night
     //Night_Combat_Settings_Init()
+    if ( RandomInt( 3 ) == 0 ) // 33% chance
+        Night_Combat_Settings_Init()
 
     // nessie spawn
     /*
