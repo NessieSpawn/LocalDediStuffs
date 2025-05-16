@@ -1,0 +1,14 @@
+global function AutoExecOnEveryLoad_Init
+
+void function AutoExecOnEveryLoad_Init()
+{
+	thread ExecGraphicsEveryLoad_Threaded()
+}
+
+void function ExecGraphicsEveryLoad_Threaded()
+{
+	wait 3
+	print( "executing..." )
+	GetLocalClientPlayer().ClientCommand( "exec graphics" )
+	GetLocalClientPlayer().ClientCommand( "sv_cheats 1" ) // for debugging, allow cheats to be enabled again
+}

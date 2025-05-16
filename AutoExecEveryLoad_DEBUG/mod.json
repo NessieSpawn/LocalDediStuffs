@@ -1,0 +1,16 @@
+{
+    "Name": "Exec Graphics on Every Load for DEBUG",
+	"Description": "",
+	"LoadPriority": 0,
+	"Version": "1.0.0",
+
+	"Scripts": [
+		{
+			"Path": "/autoexec_every_load.gnut",
+			"RunOn": "CLIENT",
+			"ClientCallback": {
+				"After": "AutoExecOnEveryLoad_Init"
+			}
+		}
+	]
+}
