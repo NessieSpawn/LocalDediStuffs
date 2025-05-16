@@ -1,0 +1,33 @@
+global function LocalDediSettings_AfterServerScript
+
+// some variables are not valid if server scripts not loaded, should set them "After"
+void function LocalDediSettings_AfterServerScript()
+{
+    if ( IsLobby() ) // shouldn't change anything in lobby
+        return
+
+    // night
+    if ( RandomInt( 3 ) == 0 ) // 33% chance
+        Night_Combat_Settings_Init()
+
+    SetBattleChatterEnableToSelf( true )
+
+    // maybe not good
+    //GameModifier_Mod_Titans_Init()
+    //GameModifier_Fake_Titanfall1_Init()
+    TitanReplace_SetEnabled( true ) // enable modded titans
+    TitanReplace_EnableModdedTitanReplace( true ) // replace prime ion and norhtstar with client-side install required modded titans
+    SetDeathHintsEnabled( false ) // no need to do death hints for modded weapons
+
+    // for fun
+    TitanReplace_EnableRoninMiscFix( true ) // fix ronin sword core weapon switch
+    //TitanReplace_EnableIonMiscFix( true ) // fix ion laser core bar, weapon damage scaling and laser shot energy cost. needs to be installed on client-side so better use playlist var
+    //TitanReplace_EnableMonarchMiscFix( true ) // fix multi-targeting missile. better to be installed on client-side
+    //TitanReplace_EnableBruteMiscFix( true ) // fix quad rocket. needs to be installed on client-side so better use playlist var
+    TitanReplace_EnableNorthstarReBalance( true ) // nerf northstar
+    TitanReplace_EnableMonarchReBalance( true ) // nerf monarch
+    TitanReplace_EnableRoninReBalance( true ) // rework ronin a little bit
+    //TitanReplace_EnableSPRoninSword( true ) // rework ronin sword core
+    TitanReplace_EnableNorthstarMiscFix( true ) // fix vtol hover behavior
+    BTReplace_SetEnabled( true ) // enables fakeBT
+}

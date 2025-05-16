@@ -1,0 +1,66 @@
+global function LocalDediSettings_AfterServerScript
+
+// some variables are not valid if server scripts not loaded, should set them "After"
+void function LocalDediSettings_AfterServerScript()
+{
+    if ( IsLobby() ) // shouldn't change anything in lobby
+        return
+
+    // night
+    //Night_Combat_Settings_Init()
+
+    // nessie spawn
+    /*
+    Nessy_EnableAllFunny_Init()
+    Nessie_SetWorldMaxNessieCount( 128 )
+    Nessie_SetHoloSprayEnabled( true ) // holo spray for fun
+    HoloSpray_SetMaxCountPerPlayer( 8 )
+    Nessie_SetHoldingPropsEnabled( true ) // holding prop for fun
+    NessyFunny_EnableMarvinScriptedAnim( true ) // funny marvin stuffs
+    */
+    Nessie_AutoSpawnCostumeForPlayers( true )
+    
+    // death cam modifiers
+    SetPlayerDeathsHidden( true ) // stop death sounds
+    /*
+    SetDeathCamLengthForced( 0.5 ) // even shorter death cam
+    SetReplayStartDelayOverride( 1.5 ) // total of 2.0s death cam( 0.5s to enable respawn + 1.5s before replay )
+    */
+
+    //GameModifier_Mod_Titans_Init()
+    //GameModifier_Fake_Titanfall1_Init()
+    SetBattleChatterEnableToSelf( true )
+
+    // maybe not good
+    TitanReplace_SetEnabled( true ) // enable modded titans
+    TitanReplace_EnableModdedTitanReplace( true ) // replace prime ion and norhtstar with client-side install required modded titans
+    SetDeathHintsEnabled( false ) // no need to do death hints for modded weapons
+
+    // for fun
+    TitanReplace_EnableRoninMiscFix( true ) // fix ronin sword core weapon switch
+    //TitanReplace_EnableIonMiscFix( true ) // fix ion laser core bar, weapon damage scaling and laser shot energy cost. needs to be installed on client-side so better use playlist var
+    //TitanReplace_EnableMonarchMiscFix( true ) // fix multi-targeting missile. better to be installed on client-side
+    //TitanReplace_EnableBruteMiscFix( true ) // fix quad rocket. needs to be installed on client-side so better use playlist var
+    TitanReplace_EnableNorthstarReBalance( true ) // nerf northstar
+    TitanReplace_EnableMonarchReBalance( true ) // nerf monarch
+    TitanReplace_EnableRoninReBalance( true ) // rework ronin a little bit
+    //TitanReplace_EnableSPRoninSword( true ) // rework ronin sword core
+    TitanReplace_EnableNorthstarMiscFix( true ) // fix vtol hover behavior
+    BTReplace_SetEnabled( true ) // enables fakeBT
+    //TitanReplace_DisableTripleThreatWeaponMagnetic( true ) // disable magnetic effect on triplethreat weapons( ogre, fakeBT ). actually client will predict magnetic effect so better installed on client
+
+    // random player model
+    AltPilot_SetPlayerModelAllRandom( true )
+    AltPilot_SetShouldReplacePlayerSettings( true )
+    //AltPilot_SetShouldRemovePlayerCamo( true )
+    SetPlayerBodyTypeDependOnSurfaceProp( true )
+
+    // remove jetpack flame for everyone
+    AddCallback_OnPlayerGetsNewPilotLoadout( OnPlayerChangeLoadout )
+}
+
+void function OnPlayerChangeLoadout( entity player , PilotLoadoutDef p )
+{
+	GivePassive( player, ePassives.PAS_STEALTH_MOVEMENT ) // hide jetpack flame
+	Rodeo_SetStealthMovementDisabledForPlayer( player, true ) // disable stealth rodeo, so player will have jetpack modified only
+}

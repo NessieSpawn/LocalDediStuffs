@@ -1,0 +1,23 @@
+{
+	"Name": "Local Dedicated Server Settings",
+	"Description": "",
+	"Version": "1.0.0",
+	"LoadPriority": 1,
+
+	"Scripts": [
+		{
+			"Path": "settings_init_after.gnut",
+			"RunOn": "SERVER && MP",
+            "ServerCallback": {
+                "After": "LocalDediSettings_AfterServerScript"
+            }
+		},
+		{
+			"Path": "settings_init_before.gnut",
+			"RunOn": "SERVER && MP",
+            "ServerCallback": {
+                "Before": "LocalDediSettings_BeforeServerScript"
+            }
+		}
+	]
+}

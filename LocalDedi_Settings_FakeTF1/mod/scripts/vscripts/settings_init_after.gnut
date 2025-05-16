@@ -1,0 +1,12 @@
+global function LocalDediSettings_AfterServerScript
+
+// some variables are not valid if server scripts not loaded, should set them "After"
+void function LocalDediSettings_AfterServerScript()
+{
+    if ( IsLobby() ) // shouldn't change anything in lobby
+        return
+
+    GameModifier_Mod_Titans_Init()
+    GameModifier_Fake_Titanfall1_Init()
+    SetBattleChatterEnableToSelf( true )
+}

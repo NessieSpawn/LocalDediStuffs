@@ -1,0 +1,37 @@
+WeaponData
+{
+	//"projectilemodel" 								"models/domestic/nessy_doll.mdl"
+
+	// vanilla missing sprint animation rate
+	// should we add it?
+	"sprintcycle_time"								".55"
+
+	Mods
+	{
+		amped_wall
+		{
+		}
+		pas_power_cell
+		{
+		}
+		amped_tacticals
+		{
+		}
+		personal_shield
+		{
+		}
+		deployable_dome_shield
+		{
+		}
+		shield_drone
+		{
+			"fire_duration"				"++5" // should fit SHIELD_DONE_LIFETIME
+		}
+		hard_cover_always // always function as hard cover
+		{
+		}
+		bleedout_balance // done in scripts -- nerfed health
+		{
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+    "Name": "Nessie Debug",
+	"Description": "Just for debugging",
+	"LoadPriority": 2,
+	"Version": "1.0.0",
+
+	"Scripts": [
+		{
+			"Path": "/nessie/nessie_debug.gnut",
+			"RunOn": "SERVER && MP",
+			"ServerCallback": {
+				"After": "NessieDebug_Init"
+			}
+		}
+	]
+}
