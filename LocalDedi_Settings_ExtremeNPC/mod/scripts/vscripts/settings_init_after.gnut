@@ -63,12 +63,24 @@ void function LocalDediSettings_AfterServerScript()
     SetPlayerBodyTypeDependOnSurfaceProp( true )
     */
 
+    // titan model effects
+    // death package
+    DeathPackage_TitanAlwaysGibOnDeath( false ) // titan won't always be gibbed on death
+    DeathPackage_EnableTitanDeathFxOnRagdoll( true ) // titan do death explosion effect even after being ragdolled
+    DeathPackage_EnableTitanNoDeathSoundOnRagdoll( false ) // titan do sound on ragdoll death. this is actually vanilla behavior, also fixed to make scorch execution emit death sound earlier
+    // damage effect
+    TitanHealth_EnableHealthChickletFX( true ) // modified function in _titan_triple_health.gnut, enable segment lose effect
+    Titan_EnableStaggerOnRepeatDamage( true ) // modified in sh_titan.gnut, enable stagger on repeat damage
+
     // remove jetpack flame for everyone
-    AddCallback_OnPlayerGetsNewPilotLoadout( OnPlayerChangeLoadout )
+    //AddCallback_OnPlayerGetsNewPilotLoadout( OnPlayerChangeLoadout )
 }
 
 void function OnPlayerChangeLoadout( entity player , PilotLoadoutDef p )
 {
-	GivePassive( player, ePassives.PAS_STEALTH_MOVEMENT ) // hide jetpack flame
-	Rodeo_SetStealthMovementDisabledForPlayer( player, true ) // disable stealth rodeo, so player will have jetpack modified only
+    if ( !PlayerHasPassive( player, ePassives.PAS_STEALTH_MOVEMENT ) )
+    {
+        GivePassive( player, ePassives.PAS_STEALTH_MOVEMENT ) // hide jetpack flame
+        Rodeo_SetStealthMovementDisabledForPlayer( player, true ) // disable stealth rodeo, so player will have jetpack modified only
+    }
 }
