@@ -61,6 +61,9 @@ void function LocalDediSettings_AfterServerScript()
 
 void function OnPlayerChangeLoadout( entity player , PilotLoadoutDef p )
 {
-	GivePassive( player, ePassives.PAS_STEALTH_MOVEMENT ) // hide jetpack flame
-	Rodeo_SetStealthMovementDisabledForPlayer( player, true ) // disable stealth rodeo, so player will have jetpack modified only
+	if ( !PlayerHasPassive( player, ePassives.PAS_STEALTH_MOVEMENT ) )
+    {
+        GivePassive( player, ePassives.PAS_STEALTH_MOVEMENT ) // hide jetpack flame
+        Rodeo_SetStealthMovementDisabledForPlayer( player, true ) // disable stealth rodeo, so player will have jetpack modified only
+    }
 }
